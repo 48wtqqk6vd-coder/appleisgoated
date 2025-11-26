@@ -1,0 +1,2675 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple vs Samsung - Der ultimative Vergleich</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --apple-blue: #0071e3;
+            --apple-gray: #1d1d1f;
+            --samsung-blue: #1428a0;
+            --gradient-start: #000000;
+            --gradient-end: #1a1a1a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: #f5f5f7;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Floating Apple Logos */
+        .floating-logos {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-logo {
+            position: absolute;
+            opacity: 0.05;
+            animation: float 20s infinite ease-in-out;
+            font-size: 100px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(10deg); }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #a1a1a6;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Comparison Cards */
+        .comparison-section {
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .comparison-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .comparison-card:hover .card-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .comparison-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #f5f5f7;
+        }
+
+        .comparison-card p {
+            color: #a1a1a6;
+            line-height: 1.8;
+        }
+
+        /* Winner Badge */
+        .winner-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            counter-increment: stat;
+        }
+
+        .stat-label {
+            color: #a1a1a6;
+            font-size: 1.1rem;
+        }
+
+        /* Interactive Feature Showcase */
+        .feature-showcase {
+            padding: 100px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 100px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-content {
+            flex: 1;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .feature-visual {
+            flex: 1;
+            min-height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .feature-visual:hover {
+            transform: scale(1.05);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .feature-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #f5f5f7;
+        }
+
+        .feature-content p {
+            font-size: 1.2rem;
+            color: #a1a1a6;
+            line-height: 1.8;
+        }
+
+        /* Interactive Button */
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        footer p {
+            color: #a1a1a6;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature-item {
+                flex-direction: column !important;
+                gap: 30px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .feature-content h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Parallax effect elements */
+        .parallax-element {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.1;
+            font-size: 200px;
+            z-index: 0;
+        }
+
+        /* Loading animation */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotating-element {
+            animation: rotate 20s linear infinite;
+        }
+
+        /* Easter Egg - Shake Animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        }
+
+        .shake-animation {
+            animation: shake 0.5s;
+        }
+
+        /* Glowing effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8),
+                        0 0 40px rgba(102, 126, 234, 0.6),
+                        0 0 60px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ============ NEUE DYNAMISCHE ANIMATIONEN ============ */
+        
+        /* Animated gradient background */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating animation for cards */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Neon glow text effect */
+        @keyframes neonGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(102, 126, 234, 0.8),
+                             0 0 20px rgba(102, 126, 234, 0.6),
+                             0 0 30px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(102, 126, 234, 1),
+                             0 0 40px rgba(102, 126, 234, 0.8),
+                             0 0 60px rgba(102, 126, 234, 0.6);
+            }
+        }
+
+        /* Morphing border animation */
+        @keyframes morphBorder {
+            0%, 100% { border-radius: 20px 40px 30px 50px; }
+            25% { border-radius: 50px 20px 40px 30px; }
+            50% { border-radius: 30px 50px 20px 40px; }
+            75% { border-radius: 40px 30px 50px 20px; }
+        }
+
+        /* Wave animation */
+        @keyframes wave {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .wave-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(102, 126, 234, 0.3), 
+                transparent);
+            animation: wave 3s infinite;
+            pointer-events: none;
+        }
+
+        /* Scale pulse animation */
+        @keyframes scalePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Breathing glow effect */
+        @keyframes breathe {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(102, 126, 234, 0.8),
+                            0 0 50px rgba(102, 126, 234, 0.6);
+            }
+        }
+
+        /* Apply floating to comparison cards */
+        .comparison-card:nth-child(1) { animation: floatSlow 6s ease-in-out infinite; }
+        .comparison-card:nth-child(2) { animation: floatSlow 6s ease-in-out infinite 1s; }
+        .comparison-card:nth-child(3) { animation: floatSlow 6s ease-in-out infinite 2s; }
+        .comparison-card:nth-child(4) { animation: floatSlow 6s ease-in-out infinite 3s; }
+        .comparison-card:nth-child(5) { animation: floatSlow 6s ease-in-out infinite 4s; }
+        .comparison-card:nth-child(6) { animation: floatSlow 6s ease-in-out infinite 5s; }
+
+        /* Hero title neon glow */
+        .hero h1 {
+            animation: neonGlow 3s ease-in-out infinite;
+        }
+
+        /* Phone cards shine effect */
+        .phone-comparison-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-comparison-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Animated border gradient */
+        @keyframes borderGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .winner-badge {
+            background: linear-gradient(90deg, 
+                #667eea 0%, 
+                #764ba2 25%, 
+                #f093fb 50%, 
+                #764ba2 75%, 
+                #667eea 100%);
+            background-size: 300% 300%;
+            animation: borderGradient 3s ease infinite;
+        }
+
+        /* Text gradient animation */
+        @keyframes textShimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .section-title {
+            background: linear-gradient(90deg, 
+                #667eea 0%, 
+                #f093fb 25%, 
+                #667eea 50%, 
+                #764ba2 75%, 
+                #667eea 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textShimmer 4s linear infinite;
+        }
+
+        /* Bounce in animation */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Sliding background pattern */
+        @keyframes slideBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .stats-section {
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(102, 126, 234, 0.02),
+                rgba(102, 126, 234, 0.02) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            background-size: 200% 200%;
+            animation: slideBackground 30s linear infinite;
+        }
+
+        /* Card tilt effect */
+        .comparison-card, .stat-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        /* Pulsating score badges */
+        .score-badge {
+            animation: scalePulse 2s ease-in-out infinite;
+        }
+
+        /* Icon spin on hover */
+        .card-icon {
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .comparison-card:hover .card-icon {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        /* VS divider animations */
+        .vs-text {
+            animation: scalePulse 2s ease-in-out infinite;
+        }
+
+        .lightning {
+            animation: rotate 3s linear infinite, breathe 2s ease-in-out infinite;
+        }
+
+        /* Feature visual pulse */
+        .feature-visual {
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        /* Stat numbers glow */
+        .stat-number {
+            animation: neonGlow 2s ease-in-out infinite;
+        }
+
+        /* CTA button enhanced animation */
+        .cta-button {
+            animation: breathe 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Morphing borders for phone cards */
+        .phone-comparison-card.iphone {
+            animation: morphBorder 8s ease-in-out infinite;
+        }
+
+        /* Particle effect container */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Glitch effect for Samsung text */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Rainbow effect */
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        /* Apply rainbow to scroll indicator */
+        .scroll-indicator {
+            animation: bounce 2s infinite, rainbow 10s linear infinite;
+        }
+
+        /* ============ END NEUE ANIMATIONEN ============ */
+
+        /* Interactive Comparison Tool Styles */
+        .interactive-comparison {
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 2;
+        }
+
+        .comparison-tool {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .phone-selector {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .phone-selector h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #f5f5f7;
+        }
+
+        .phone-dropdown {
+            padding: 18px 30px;
+            font-size: 1.1rem;
+            border-radius: 15px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 350px;
+            backdrop-filter: blur(10px);
+        }
+
+        .phone-dropdown:hover {
+            border-color: rgba(102, 126, 234, 0.6);
+            background: rgba(255, 255, 255, 0.08);
+            transform: scale(1.02);
+        }
+
+        .phone-dropdown:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .phone-dropdown option {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 10px;
+        }
+
+        .comparison-results {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .vs-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+
+        .phone-comparison-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .phone-comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .phone-comparison-card.iphone {
+            border-color: rgba(102, 126, 234, 0.5);
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .phone-comparison-card.iphone:hover {
+            border-color: rgba(102, 126, 234, 0.8);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .phone-image {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .phone-comparison-card h4 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f5f5f7;
+        }
+
+        .specs-list {
+            margin-bottom: 25px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            gap: 15px;
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: #a1a1a6;
+            min-width: 120px;
+        }
+
+        .spec-value {
+            color: #f5f5f7;
+            text-align: right;
+            flex: 1;
+        }
+
+        .spec-item.winner .spec-value {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .spec-item.loser .spec-value {
+            color: #ef4444;
+        }
+
+        .score-badge {
+            text-align: center;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .score-badge.winner {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .score-badge.loser {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .vs-divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .vs-text {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+
+        .lightning {
+            font-size: 4rem;
+            animation: rotate 3s linear infinite;
+        }
+
+        .comparison-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .comparison-summary h3 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #a1a1a6;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .summary-text strong {
+            color: #f5f5f7;
+        }
+
+        .upgrade-cta {
+            margin-top: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            .vs-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .vs-divider {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+
+            .phone-dropdown {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-summary {
+                padding: 30px 20px;
+            }
+
+            .phone-comparison-card {
+                padding: 25px;
+            }
+
+            .spec-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .spec-label {
+                min-width: 100%;
+            }
+
+            .spec-value {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Logos -->
+    <div class="floating-logos" id="floatingLogos"></div>
+
+    <!-- Parallax Elements -->
+    <div class="parallax-element rotating-element" id="parallax1" style="top: 10%; left: 10%;">🍎</div>
+    <div class="parallax-element rotating-element" id="parallax2" style="top: 60%; right: 10%;">🍎</div>
+
+    <!-- Animated Background Shapes -->
+    <div class="particle-container" id="particleContainer"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Apple. Think Different. 🍎</h1>
+        <p>Entdecke, warum Apple die Messlatte in Innovation, Design und Nutzererfahrung setzt</p>
+        <button class="cta-button" onclick="scrollToComparison()">
+            <span>Vergleich starten ↓</span>
+        </button>
+        <div class="scroll-indicator">
+            <div style="font-size: 2rem; opacity: 0.5;">↓</div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <h2 class="section-title">Der direkte Vergleich</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Design & Verarbeitung</h3>
+                    <p><strong>Apple:</strong> Minimalistisches, zeitloses Design aus Premium-Materialien wie Titan und Keramik. Jedes Detail perfektioniert.</p>
+                    <p style="margin-top: 15px; opacity: 0.6;"><strong>Samsung:</strong> Plastik-Feeling bei günstigeren Modellen, inkonsistentes Design über die Produktpalette.</p>
+                    <div class="winner-badge">🏆 Apple gewinnt</div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p><strong>Apple:</strong> A-Series und M-Series Chips dominieren alle Benchmarks. Branchenführend in Single-Core Performance.</p>
+                    <p style="margin-top: 15px; opacity: 0.6;"><strong>Samsung:</strong> Exynos-Varianten oft langsamer als Qualcomm-Modelle. Throttling bei längerer Last.</p>
+                    <div class="winner-badge">🏆 Apple gewinnt</div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Software-Updates</h3>
+                    <p><strong>Apple:</strong> 6+ Jahre Software-Support, alle Geräte erhalten Updates gleichzeitig.</p>
+                    <p style="margin-top: 15px; opacity: 0.6;"><strong>Samsung:</strong> Nur 4 Jahre Updates, verspätete Rollouts, aufgeblähte Software.</p>
+                    <div class="winner-badge">🏆 Apple gewinnt</div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="card-icon">🎵</div>
+                    <h3>Ökosystem</h3>
+                    <p><strong>Apple:</strong> Nahtlose Integration zwischen iPhone, iPad, Mac, Apple Watch. AirDrop, Handoff, Universal Clipboard.</p>
+                    <p style="margin-top: 15px; opacity: 0.6;"><strong>Samsung:</strong> Fragmentiertes Ökosystem, schlechte Integration mit anderen Geräten.</p>
+                    <div class="winner-badge">🏆 Apple gewinnt</div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Sicherheit & Privacy</h3>
+                    <p><strong>Apple:</strong> End-to-End-Verschlüsselung, keine Datensammlung, Secure Enclave, Face ID.</p>
+                    <p style="margin-top: 15px; opacity: 0.6;"><strong>Samsung:</strong> Abhängig von Google-Diensten, Daten-Tracking, Bloatware von Drittanbietern.</p>
+                    <div class="winner-badge">🏆 Apple gewinnt</div>
+                </div>
+
+                <div class="comparison-card">
+                    <div class="card-icon">📱</div>
+                    <h3>Build Quality</h3>
+                    <p><strong>Apple:</strong> Wasserresistenz bis IP68, Ceramic Shield, präzise Verarbeitung ohne Spaltmaße.</p>
+                    <p style="margin-top: 15px; opacity: 0.6;"><strong>Samsung:</strong> Probleme mit faltbaren Displays, Bildschirmschäden durch Luftblasen.</p>
+                    <div class="winner-badge">🏆 Apple gewinnt</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Die Zahlen sprechen für sich</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-label">% Kundenzufriedenheit</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="6">0</div>
+                    <div class="stat-label">Jahre Software-Support</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="1">0</div>
+                    <div class="stat-label">Nahtloses Ökosystem</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="0">100</div>
+                    <div class="stat-label">% Bloatware (Samsung hat >20 vorinstallierte Apps)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Showcase -->
+    <section class="feature-showcase">
+        <div class="container">
+            <h2 class="section-title">Was Apple besser macht</h2>
+            
+            <div class="feature-item">
+                <div class="feature-content">
+                    <h3>🎯 User Experience</h3>
+                    <p>iOS ist intuitiv, flüssig und konsistent. Keine Lags, keine unnötigen Animationen, keine verwirrenden Einstellungen. Alles funktioniert einfach – so wie es sein sollte.</p>
+                </div>
+                <div class="feature-visual">📱</div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-content">
+                    <h3>🏅 Premium-Materialien</h3>
+                    <p>Titan, Edelstahl, Keramik – Apple verwendet nur die besten Materialien. Das Ergebnis: Geräte, die sich hochwertig anfühlen und Jahre halten.</p>
+                </div>
+                <div class="feature-visual">💎</div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-content">
+                    <h3>🚀 Innovation</h3>
+                    <p>Face ID, Dynamic Island, ProMotion, MagSafe – Apple erfindet Features, die die Industrie prägen. Samsung kopiert nur.</p>
+                </div>
+                <div class="feature-visual">✨</div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-content">
+                    <h3>🎬 Kreativ-Tools</h3>
+                    <p>Final Cut Pro, Logic Pro, Xcode – die besten professionellen Tools. Millionen Kreative weltweit vertrauen auf das Apple-Ökosystem.</p>
+                </div>
+                <div class="feature-visual">🎨</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Comparison Tool -->
+    <section class="interactive-comparison">
+        <div class="container">
+            <h2 class="section-title">📊 Vergleiche dein aktuelles Handy</h2>
+            <p style="text-align: center; color: #a1a1a6; margin-bottom: 50px; font-size: 1.2rem;">
+                Wähle dein aktuelles Smartphone und sieh, wie es gegen das iPhone 17 Pro Max abschneidet
+            </p>
+
+            <div class="comparison-tool">
+                <div class="phone-selector">
+                    <select id="phoneSelect" class="phone-dropdown">
+                        <option value="">Wähle dein Smartphone...</option>
+                        
+                        <optgroup label="📱 Apple iPhone (2024-2023)">
+                            <option value="iphone16promax">iPhone 16 Pro Max</option>
+                            <option value="iphone16pro">iPhone 16 Pro</option>
+                            <option value="iphone16plus">iPhone 16 Plus</option>
+                            <option value="iphone16">iPhone 16</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15plus">iPhone 15 Plus</option>
+                            <option value="iphone15">iPhone 15</option>
+                        </optgroup>
+                        
+                        <optgroup label="📱 Apple iPhone (2022-2020)">
+                            <option value="iphone14promax">iPhone 14 Pro Max</option>
+                            <option value="iphone14pro">iPhone 14 Pro</option>
+                            <option value="iphone14plus">iPhone 14 Plus</option>
+                            <option value="iphone14">iPhone 14</option>
+                            <option value="iphone13promax">iPhone 13 Pro Max</option>
+                            <option value="iphone13pro">iPhone 13 Pro</option>
+                            <option value="iphone13">iPhone 13</option>
+                            <option value="iphone12promax">iPhone 12 Pro Max</option>
+                            <option value="iphone12pro">iPhone 12 Pro</option>
+                            <option value="iphone12">iPhone 12</option>
+                        </optgroup>
+                        
+                        <optgroup label="⭐ Samsung Flaggschiffe">
+                            <option value="s24ultra">Galaxy S24 Ultra</option>
+                            <option value="s24plus">Galaxy S24+</option>
+                            <option value="s24">Galaxy S24</option>
+                            <option value="s23ultra">Galaxy S23 Ultra</option>
+                            <option value="s23plus">Galaxy S23+</option>
+                            <option value="s23">Galaxy S23</option>
+                            <option value="s22ultra">Galaxy S22 Ultra</option>
+                        </optgroup>
+                        
+                        <optgroup label="📲 Samsung Faltbare">
+                            <option value="zfold6">Galaxy Z Fold 6</option>
+                            <option value="zfold5">Galaxy Z Fold 5</option>
+                            <option value="zflip6">Galaxy Z Flip 6</option>
+                            <option value="zflip5">Galaxy Z Flip 5</option>
+                        </optgroup>
+                        
+                        <optgroup label="💰 Samsung Mittelklasse">
+                            <option value="a55">Galaxy A55</option>
+                            <option value="a54">Galaxy A54</option>
+                            <option value="a35">Galaxy A35</option>
+                            <option value="a34">Galaxy A34</option>
+                        </optgroup>
+                        
+                        <optgroup label="🎯 Google Pixel">
+                            <option value="pixel9pro">Pixel 9 Pro XL</option>
+                            <option value="pixel9">Pixel 9</option>
+                            <option value="pixel8pro">Pixel 8 Pro</option>
+                            <option value="pixel8">Pixel 8</option>
+                            <option value="pixel7pro">Pixel 7 Pro</option>
+                        </optgroup>
+                        
+                        <optgroup label="🚀 Xiaomi Flaggschiffe">
+                            <option value="xiaomi14ultra">Xiaomi 14 Ultra</option>
+                            <option value="xiaomi14pro">Xiaomi 14 Pro</option>
+                            <option value="xiaomi14">Xiaomi 14</option>
+                            <option value="xiaomi13pro">Xiaomi 13 Pro</option>
+                            <option value="xiaomi13">Xiaomi 13</option>
+                        </optgroup>
+                        
+                        <optgroup label="⚡ OnePlus">
+                            <option value="oneplus12">OnePlus 12</option>
+                            <option value="oneplus11">OnePlus 11</option>
+                            <option value="oneplus10pro">OnePlus 10 Pro</option>
+                        </optgroup>
+                        
+                        <optgroup label="🌟 Andere Premium">
+                            <option value="nothing2">Nothing Phone 2</option>
+                            <option value="nothing2a">Nothing Phone 2a</option>
+                            <option value="sony1v">Sony Xperia 1 V</option>
+                            <option value="sony1iv">Sony Xperia 1 IV</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div id="comparisonResults" class="comparison-results" style="display: none;">
+                    <div class="vs-container">
+                        <div class="phone-comparison-card your-phone">
+                            <div class="phone-image">📱</div>
+                            <h4 id="yourPhoneName">Dein Handy</h4>
+                            <div class="specs-list" id="yourPhoneSpecs"></div>
+                            <div class="score-badge loser" id="yourPhoneScore">Score: 0</div>
+                        </div>
+
+                        <div class="vs-divider">
+                            <div class="vs-text">VS</div>
+                            <div class="lightning">⚡</div>
+                        </div>
+
+                        <div class="phone-comparison-card iphone">
+                            <div class="phone-image">🍎</div>
+                            <h4>iPhone 17 Pro Max</h4>
+                            <div class="specs-list">
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Prozessor:</span>
+                                    <span class="spec-value">A19 Pro Chip (3nm) 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Display:</span>
+                                    <span class="spec-value">6.9" Super Retina XDR ProMotion (1-120Hz) 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">RAM:</span>
+                                    <span class="spec-value">12GB LPDDR5X 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Speicher:</span>
+                                    <span class="spec-value">2TB (max) 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Kamera:</span>
+                                    <span class="spec-value">48MP Hauptkamera + 48MP Ultra Wide + 12MP Periskop 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Akku:</span>
+                                    <span class="spec-value">4685mAh + MagSafe 25W 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Material:</span>
+                                    <span class="spec-value">Titan Grade 5 + Ceramic Shield 🏆</span>
+                                </div>
+                                <div class="spec-item winner">
+                                    <span class="spec-label">Software:</span>
+                                    <span class="spec-value">iOS 19 (8+ Jahre Updates) 🏆</span>
+                                </div>
+                            </div>
+                            <div class="score-badge winner">Score: 100</div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-summary">
+                        <h3>📈 Detaillierte Analyse</h3>
+                        <div id="summaryText" class="summary-text"></div>
+                        <div class="upgrade-cta">
+                            <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                                <strong id="upgradeMessage">Bereit für das Upgrade?</strong>
+                            </p>
+                            <button class="cta-button" onclick="window.open('https://www.apple.com/de/iphone-16-pro/', '_blank')">
+                                <span>🍎 Zum iPhone wechseln</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Comparison Tool -->
+    <section class="interactive-comparison">
+        <div class="container">
+            <h2 class="section-title">📊 Vergleiche dein aktuelles Handy</h2>
+            <p style="text-align: center; color: #a1a1a6; margin-bottom: 50px; font-size: 1.2rem;">
+                Wähle dein aktuelles Smartphone und sieh, wie es gegen das iPhone 16 Pro Max abschneidet
+            </p>
+
+            <div class="comparison-tool">
+                <div class="phone-selector">
+                    <h3>🤔 Dein aktuelles Handy</h3>
+                    <select id="phoneSelect" class="phone-dropdown">
+                        <option value="">Wähle dein Smartphone...</option>
+                        <optgroup label="Samsung Galaxy">
+                            <option value="s24ultra">Samsung Galaxy S24 Ultra</option>
+                            <option value="s24plus">Samsung Galaxy S24+</option>
+                            <option value="s24">Samsung Galaxy S24</option>
+                            <option value="s23ultra">Samsung Galaxy S23 Ultra</option>
+                            <option value="zfold6">Samsung Galaxy Z Fold 6</option>
+                            <option value="zflip6">Samsung Galaxy Z Flip 6</option>
+                            <option value="a55">Samsung Galaxy A55</option>
+                            <option value="a35">Samsung Galaxy A35</option>
+                        </optgroup>
+                        <optgroup label="Google Pixel">
+                            <option value="pixel9pro">Google Pixel 9 Pro</option>
+                            <option value="pixel9">Google Pixel 9</option>
+                            <option value="pixel8pro">Google Pixel 8 Pro</option>
+                        </optgroup>
+                        <optgroup label="Xiaomi">
+                            <option value="xiaomi14ultra">Xiaomi 14 Ultra</option>
+                            <option value="xiaomi14">Xiaomi 14</option>
+                            <option value="xiaomi13pro">Xiaomi 13 Pro</option>
+                        </optgroup>
+                        <optgroup label="OnePlus">
+                            <option value="oneplus12">OnePlus 12</option>
+                            <option value="oneplus11">OnePlus 11</option>
+                        </optgroup>
+                        <optgroup label="Andere">
+                            <option value="nothing2">Nothing Phone 2</option>
+                            <option value="sony1v">Sony Xperia 1 V</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <div id="comparisonResults" class="comparison-results" style="display: none;">
+                    <div class="vs-container">
+                        <div class="phone-comparison-card your-phone">
+                            <div class="phone-image">📱</div>
+                            <h4 id="yourPhoneName">Dein Handy</h4>
+                            <div class="specs-list" id="yourPhoneSpecs"></div>
+                            <div class="score-badge loser" id="yourPhoneScore">Score: 0</div>
+                        </div>
+
+                        <div class="vs-divider">
+                            <div class="vs-text">VS</div>
+                            <div class="lightning">
+
+    <script>
+        // Floating Apple Logos
+        function createFloatingLogos() {
+            const container = document.getElementById('floatingLogos');
+            for (let i = 0; i < 15; i++) {
+                const logo = document.createElement('div');
+                logo.className = 'floating-logo';
+                logo.textContent = '🍎';
+                logo.style.left = Math.random() * 100 + '%';
+                logo.style.top = Math.random() * 100 + '%';
+                logo.style.animationDelay = Math.random() * 10 + 's';
+                logo.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(logo);
+            }
+        }
+
+        // Smooth scroll function
+        function scrollToComparison() {
+            document.getElementById('comparison').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Animated counter
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const counter = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(counter);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate counters when stats section is visible
+                    if (entry.target.classList.contains('stat-card')) {
+                        const number = entry.target.querySelector('.stat-number');
+                        if (number && !number.classList.contains('counted')) {
+                            number.classList.add('counted');
+                            animateCounter(number);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and features
+        document.querySelectorAll('.comparison-card, .feature-item, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+
+        // Parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            parallaxElements.forEach((el, index) => {
+                const speed = (index + 1) * 0.02;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                el.style.transform = `translate(${x}px, ${y}px) rotate(${x}deg)`;
+            });
+        });
+
+        // Interactive card glow effect
+        document.querySelectorAll('.comparison-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+
+        // Easter Egg: Shake Samsung mention
+        let shakeTimeout;
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent.includes('Samsung')) {
+                e.target.classList.add('shake-animation');
+                setTimeout(() => {
+                    e.target.classList.remove('shake-animation');
+                }, 500);
+            }
+        });
+
+        // Random glow effect on cards
+        setInterval(() => {
+            const cards = document.querySelectorAll('.comparison-card');
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            randomCard.classList.add('glow');
+            setTimeout(() => {
+                randomCard.classList.remove('glow');
+            }, 2000);
+        }, 5000);
+
+        // Scroll reveal animation
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-element');
+            parallaxElements.forEach((el, index) => {
+                const speed = (index + 1) * 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Cursor trail effect (Apple-style)
+        let cursorTrail = [];
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.9) { // Only create occasionally to avoid performance issues
+                const trail = document.createElement('div');
+                trail.style.cssText = `
+                    position: fixed;
+                    width: 10px;
+                    height: 10px;
+                    background: radial-gradient(circle, rgba(102,126,234,0.6) 0%, transparent 70%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    animation: fadeOut 1s ease-out forwards;
+                `;
+                document.body.appendChild(trail);
+                
+                setTimeout(() => trail.remove(), 1000);
+            }
+        });
+
+        // Add fadeOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                to {
+                    opacity: 0;
+                    transform: scale(2);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createFloatingLogos();
+            createParticleSystem();
+            initDynamicEffects();
+        });
+
+        // Create particle system
+        function createParticleSystem() {
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'particle-container';
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Dynamic effects initialization
+        function initDynamicEffects() {
+            // Add wave effect to cards on hover
+            document.querySelectorAll('.comparison-card').forEach(card => {
+                const wave = document.createElement('div');
+                wave.className = 'wave-effect';
+                card.appendChild(wave);
+            });
+
+            // Dynamic 3D tilt effect on cards
+            document.querySelectorAll('.comparison-card, .stat-card, .phone-comparison-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                });
+            });
+
+            // Animated numbers on scroll
+            const animateNumbers = () => {
+                document.querySelectorAll('.stat-number').forEach(el => {
+                    if (!el.classList.contains('counted')) {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight) {
+                            el.classList.add('counted');
+                            animateCounter(el);
+                        }
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateNumbers);
+            animateNumbers();
+
+            // Random glitch effect on Samsung mentions
+            setInterval(() => {
+                const samsungElements = Array.from(document.querySelectorAll('p, h3, div'))
+                    .filter(el => el.textContent.includes('Samsung'));
+                
+                if (samsungElements.length > 0 && Math.random() > 0.7) {
+                    const element = samsungElements[Math.floor(Math.random() * samsungElements.length)];
+                    element.style.animation = 'glitch 0.3s';
+                    setTimeout(() => {
+                        element.style.animation = '';
+                    }, 300);
+                }
+            }, 5000);
+
+            // Confetti effect on phone selection
+            window.createConfetti = function(x, y) {
+                for (let i = 0; i < 30; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.style.cssText = `
+                        position: fixed;
+                        width: 8px;
+                        height: 8px;
+                        background: ${['#667eea', '#764ba2', '#f093fb', '#4facfe'][Math.floor(Math.random() * 4)]};
+                        left: ${x}px;
+                        top: ${y}px;
+                        border-radius: 50%;
+                        pointer-events: none;
+                        z-index: 9999;
+                        animation: confettiFall ${1 + Math.random()}s ease-out forwards;
+                    `;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 2000);
+                }
+            };
+
+            // Add confetti animation
+            const confettiStyle = document.createElement('style');
+            confettiStyle.textContent = `
+                @keyframes confettiFall {
+                    to {
+                        transform: translate(${-100 + Math.random() * 200}px, ${500 + Math.random() * 200}px) rotate(${Math.random() * 360}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(confettiStyle);
+
+            // Floating emojis on special events
+            window.createFloatingEmoji = function(emoji, duration = 3000) {
+                const floatingEmoji = document.createElement('div');
+                floatingEmoji.textContent = emoji;
+                floatingEmoji.style.cssText = `
+                    position: fixed;
+                    left: ${Math.random() * window.innerWidth}px;
+                    top: 100%;
+                    font-size: ${30 + Math.random() * 40}px;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: floatUp ${duration}ms ease-out forwards;
+                `;
+                document.body.appendChild(floatingEmoji);
+                
+                setTimeout(() => floatingEmoji.remove(), duration);
+            };
+
+            const floatUpStyle = document.createElement('style');
+            floatUpStyle.textContent = `
+                @keyframes floatUp {
+                    to {
+                        transform: translateY(-120vh) rotate(${-180 + Math.random() * 360}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(floatUpStyle);
+
+            // Dynamic background gradient
+            let gradientAngle = 0;
+            setInterval(() => {
+                gradientAngle = (gradientAngle + 1) % 360;
+                document.body.style.background = `linear-gradient(${gradientAngle}deg, #000000 0%, #1a1a1a 100%)`;
+            }, 100);
+
+            // Add sparkle effect on hover
+            document.querySelectorAll('.cta-button, .winner-badge').forEach(el => {
+                el.addEventListener('mouseenter', function() {
+                    for (let i = 0; i < 10; i++) {
+                        setTimeout(() => {
+                            const sparkle = document.createElement('div');
+                            const rect = this.getBoundingClientRect();
+                            sparkle.style.cssText = `
+                                position: fixed;
+                                width: 4px;
+                                height: 4px;
+                                background: white;
+                                border-radius: 50%;
+                                left: ${rect.left + Math.random() * rect.width}px;
+                                top: ${rect.top + Math.random() * rect.height}px;
+                                pointer-events: none;
+                                z-index: 9999;
+                                animation: sparkleAnim 0.6s ease-out forwards;
+                            `;
+                            document.body.appendChild(sparkle);
+                            setTimeout(() => sparkle.remove(), 600);
+                        }, i * 50);
+                    }
+                });
+            });
+
+            const sparkleStyle = document.createElement('style');
+            sparkleStyle.textContent = `
+                @keyframes sparkleAnim {
+                    0% {
+                        transform: scale(0) translateY(0);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: scale(1) translateY(-30px);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(sparkleStyle);
+
+            // Smooth color transition for hover effects
+            document.querySelectorAll('.comparison-card').forEach((card, index) => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.5s ease';
+                    this.style.background = `rgba(102, 126, 234, 0.1)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(255, 255, 255, 0.05)';
+                });
+            });
+
+            // Typing effect for feature descriptions
+            const createTypingEffect = (element, text, speed = 50) => {
+                let i = 0;
+                element.textContent = '';
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                    }
+                }, speed);
+            };
+
+            // Magnetic effect for buttons
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(0, 0) scale(1)';
+                });
+            });
+
+            // Add pulse effect to phone images
+            setInterval(() => {
+                document.querySelectorAll('.phone-image').forEach(img => {
+                    img.style.animation = 'none';
+                    setTimeout(() => {
+                        img.style.animation = 'scalePulse 0.5s ease-in-out';
+                    }, 10);
+                });
+            }, 8000);
+        }
+
+        // Fireworks effect for iPhone selection
+        function createFirework(x, y) {
+            const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                const angle = (Math.PI * 2 * i) / 50;
+                const velocity = 2 + Math.random() * 2;
+                
+                firework.style.cssText = `
+                    position: fixed;
+                    width: 4px;
+                    height: 4px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    border-radius: 50%;
+                    left: ${x}px;
+                    top: ${y}px;
+                    pointer-events: none;
+                    z-index: 9999;
+                `;
+                
+                document.body.appendChild(firework);
+                
+                let posX = x;
+                let posY = y;
+                let velocityX = Math.cos(angle) * velocity * 50;
+                let velocityY = Math.sin(angle) * velocity * 50;
+                
+                const animate = () => {
+                    velocityY += 0.5;
+                    posX += velocityX * 0.1;
+                    posY += velocityY * 0.1;
+                    
+                    firework.style.left = posX + 'px';
+                    firework.style.top = posY + 'px';
+                    
+                    if (posY < window.innerHeight + 100) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        firework.remove();
+                    }
+                };
+                
+                animate();
+            }
+        }
+
+
+        // Button click effect
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add ripple animation
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+
+        // Phone Comparison Tool
+        const phoneDatabase = {
+            // Apple iPhone 2024-2023
+            'iphone16promax': {
+                name: 'iPhone 16 Pro Max',
+                processor: 'A18 Pro Chip (3nm)',
+                display: '6.9" Super Retina XDR ProMotion (1-120Hz)',
+                ram: '8GB',
+                storage: '1TB (max)',
+                camera: '48MP + 48MP + 12MP Telephoto',
+                battery: '4685mAh',
+                material: 'Titan Grade 5 + Ceramic Shield',
+                software: 'iOS 18 (7+ Jahre Updates)',
+                score: 95
+            },
+            'iphone16pro': {
+                name: 'iPhone 16 Pro',
+                processor: 'A18 Pro Chip (3nm)',
+                display: '6.3" Super Retina XDR ProMotion (1-120Hz)',
+                ram: '8GB',
+                storage: '1TB (max)',
+                camera: '48MP + 48MP + 12MP Telephoto',
+                battery: '3582mAh',
+                material: 'Titan Grade 5 + Ceramic Shield',
+                software: 'iOS 18 (7+ Jahre Updates)',
+                score: 93
+            },
+            'iphone16plus': {
+                name: 'iPhone 16 Plus',
+                processor: 'A18 Chip (3nm)',
+                display: '6.7" Super Retina XDR (60Hz)',
+                ram: '8GB',
+                storage: '512GB (max)',
+                camera: '48MP + 12MP Ultra Wide',
+                battery: '4674mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (7+ Jahre Updates)',
+                score: 88
+            },
+            'iphone16': {
+                name: 'iPhone 16',
+                processor: 'A18 Chip (3nm)',
+                display: '6.1" Super Retina XDR (60Hz)',
+                ram: '8GB',
+                storage: '512GB (max)',
+                camera: '48MP + 12MP Ultra Wide',
+                battery: '3561mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (7+ Jahre Updates)',
+                score: 85
+            },
+            'iphone15promax': {
+                name: 'iPhone 15 Pro Max',
+                processor: 'A17 Pro Chip (3nm)',
+                display: '6.7" Super Retina XDR ProMotion (1-120Hz)',
+                ram: '8GB',
+                storage: '1TB (max)',
+                camera: '48MP + 12MP + 12MP Telephoto',
+                battery: '4441mAh',
+                material: 'Titan + Ceramic Shield',
+                software: 'iOS 18 (6+ Jahre Updates)',
+                score: 92
+            },
+            'iphone15pro': {
+                name: 'iPhone 15 Pro',
+                processor: 'A17 Pro Chip (3nm)',
+                display: '6.1" Super Retina XDR ProMotion (1-120Hz)',
+                ram: '8GB',
+                storage: '1TB (max)',
+                camera: '48MP + 12MP + 12MP Telephoto',
+                battery: '3274mAh',
+                material: 'Titan + Ceramic Shield',
+                software: 'iOS 18 (6+ Jahre Updates)',
+                score: 90
+            },
+            'iphone15plus': {
+                name: 'iPhone 15 Plus',
+                processor: 'A16 Bionic',
+                display: '6.7" Super Retina XDR (60Hz)',
+                ram: '6GB',
+                storage: '512GB (max)',
+                camera: '48MP + 12MP Ultra Wide',
+                battery: '4383mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (6+ Jahre Updates)',
+                score: 84
+            },
+            'iphone15': {
+                name: 'iPhone 15',
+                processor: 'A16 Bionic',
+                display: '6.1" Super Retina XDR (60Hz)',
+                ram: '6GB',
+                storage: '512GB (max)',
+                camera: '48MP + 12MP Ultra Wide',
+                battery: '3349mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (6+ Jahre Updates)',
+                score: 82
+            },
+            // Apple iPhone 2022-2020
+            'iphone14promax': {
+                name: 'iPhone 14 Pro Max',
+                processor: 'A16 Bionic',
+                display: '6.7" Super Retina XDR ProMotion (1-120Hz)',
+                ram: '6GB',
+                storage: '1TB (max)',
+                camera: '48MP + 12MP + 12MP Telephoto',
+                battery: '4323mAh',
+                material: 'Edelstahl + Ceramic Shield',
+                software: 'iOS 18 (5+ Jahre Updates)',
+                score: 86
+            },
+            'iphone14pro': {
+                name: 'iPhone 14 Pro',
+                processor: 'A16 Bionic',
+                display: '6.1" Super Retina XDR ProMotion (1-120Hz)',
+                ram: '6GB',
+                storage: '1TB (max)',
+                camera: '48MP + 12MP + 12MP Telephoto',
+                battery: '3200mAh',
+                material: 'Edelstahl + Ceramic Shield',
+                software: 'iOS 18 (5+ Jahre Updates)',
+                score: 84
+            },
+            'iphone14plus': {
+                name: 'iPhone 14 Plus',
+                processor: 'A15 Bionic',
+                display: '6.7" Super Retina XDR (60Hz)',
+                ram: '6GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP Ultra Wide',
+                battery: '4325mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (5+ Jahre Updates)',
+                score: 78
+            },
+            'iphone14': {
+                name: 'iPhone 14',
+                processor: 'A15 Bionic',
+                display: '6.1" Super Retina XDR (60Hz)',
+                ram: '6GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP Ultra Wide',
+                battery: '3279mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (5+ Jahre Updates)',
+                score: 76
+            },
+            'iphone13promax': {
+                name: 'iPhone 13 Pro Max',
+                processor: 'A15 Bionic',
+                display: '6.7" Super Retina XDR ProMotion (10-120Hz)',
+                ram: '6GB',
+                storage: '1TB (max)',
+                camera: '12MP + 12MP + 12MP Telephoto',
+                battery: '4352mAh',
+                material: 'Edelstahl + Ceramic Shield',
+                software: 'iOS 18 (4+ Jahre Updates)',
+                score: 82
+            },
+            'iphone13pro': {
+                name: 'iPhone 13 Pro',
+                processor: 'A15 Bionic',
+                display: '6.1" Super Retina XDR ProMotion (10-120Hz)',
+                ram: '6GB',
+                storage: '1TB (max)',
+                camera: '12MP + 12MP + 12MP Telephoto',
+                battery: '3095mAh',
+                material: 'Edelstahl + Ceramic Shield',
+                software: 'iOS 18 (4+ Jahre Updates)',
+                score: 80
+            },
+            'iphone13': {
+                name: 'iPhone 13',
+                processor: 'A15 Bionic',
+                display: '6.1" Super Retina XDR (60Hz)',
+                ram: '4GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP Ultra Wide',
+                battery: '3240mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (4+ Jahre Updates)',
+                score: 74
+            },
+            'iphone12promax': {
+                name: 'iPhone 12 Pro Max',
+                processor: 'A14 Bionic',
+                display: '6.7" Super Retina XDR (60Hz)',
+                ram: '6GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP + 12MP Telephoto',
+                battery: '3687mAh',
+                material: 'Edelstahl + Ceramic Shield',
+                software: 'iOS 18 (3+ Jahre Updates)',
+                score: 76
+            },
+            'iphone12pro': {
+                name: 'iPhone 12 Pro',
+                processor: 'A14 Bionic',
+                display: '6.1" Super Retina XDR (60Hz)',
+                ram: '6GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP + 12MP Telephoto',
+                battery: '2815mAh',
+                material: 'Edelstahl + Ceramic Shield',
+                software: 'iOS 18 (3+ Jahre Updates)',
+                score: 74
+            },
+            'iphone12': {
+                name: 'iPhone 12',
+                processor: 'A14 Bionic',
+                display: '6.1" Super Retina XDR (60Hz)',
+                ram: '4GB',
+                storage: '256GB (max)',
+                camera: '12MP + 12MP Ultra Wide',
+                battery: '2815mAh',
+                material: 'Aluminium + Ceramic Shield',
+                software: 'iOS 18 (3+ Jahre Updates)',
+                score: 70
+            },
+            // Samsung Flaggschiffe
+            's24ultra': {
+                name: 'Samsung Galaxy S24 Ultra',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.8" Dynamic AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '1TB (max)',
+                camera: '200MP + 50MP + 12MP + 10MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Armor',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 72
+            },
+            's24plus': {
+                name: 'Samsung Galaxy S24+',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.7" Dynamic AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '4900mAh',
+                material: 'Aluminium + Gorilla Victus 2',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 68
+            },
+            's24': {
+                name: 'Samsung Galaxy S24',
+                processor: 'Exynos 2400',
+                display: '6.2" Dynamic AMOLED (60-120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '4000mAh',
+                material: 'Aluminium + Gorilla Victus 2',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 62
+            },
+            's23ultra': {
+                name: 'Samsung Galaxy S23 Ultra',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.8" Dynamic AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '1TB (max)',
+                camera: '200MP + 12MP + 10MP + 10MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 69
+            },
+            's23plus': {
+                name: 'Samsung Galaxy S23+',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.6" Dynamic AMOLED (48-120Hz)',
+                ram: '8GB',
+                storage: '512GB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '4700mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 64
+            },
+            's23': {
+                name: 'Samsung Galaxy S23',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.1" Dynamic AMOLED (48-120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '3900mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 60
+            },
+            's22ultra': {
+                name: 'Samsung Galaxy S22 Ultra',
+                processor: 'Snapdragon 8 Gen 1',
+                display: '6.8" Dynamic AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '1TB (max)',
+                camera: '108MP + 12MP + 10MP + 10MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus+',
+                software: 'Android 14 (2 Jahre verbleibend)',
+                score: 65
+            },
+            // Samsung Faltbare
+            'zfold6': {
+                name: 'Samsung Galaxy Z Fold 6',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '7.6" Dynamic AMOLED (faltbar)',
+                ram: '12GB',
+                storage: '1TB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '4400mAh',
+                material: 'Aluminium (Faltscharnier anfällig)',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 55
+            },
+            'zfold5': {
+                name: 'Samsung Galaxy Z Fold 5',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '7.6" Dynamic AMOLED (faltbar)',
+                ram: '12GB',
+                storage: '1TB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '4400mAh',
+                material: 'Aluminium (Faltscharnier anfällig)',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 52
+            },
+            'zflip6': {
+                name: 'Samsung Galaxy Z Flip 6',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.7" Dynamic AMOLED (faltbar)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '50MP + 12MP',
+                battery: '4000mAh',
+                material: 'Aluminium (Faltscharnier anfällig)',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 50
+            },
+            'zflip5': {
+                name: 'Samsung Galaxy Z Flip 5',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.7" Dynamic AMOLED (faltbar)',
+                ram: '8GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP',
+                battery: '3700mAh',
+                material: 'Aluminium (Faltscharnier anfällig)',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 47
+            },
+            // Samsung Mittelklasse
+            'a55': {
+                name: 'Samsung Galaxy A55',
+                processor: 'Exynos 1480',
+                display: '6.6" Super AMOLED (120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '50MP + 12MP + 5MP',
+                battery: '5000mAh',
+                material: 'Plastik + Gorilla Glass Victus+',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 45
+            },
+            'a54': {
+                name: 'Samsung Galaxy A54',
+                processor: 'Exynos 1380',
+                display: '6.4" Super AMOLED (120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '50MP + 12MP + 5MP',
+                battery: '5000mAh',
+                material: 'Plastik + Gorilla Glass 5',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 42
+            },
+            'a35': {
+                name: 'Samsung Galaxy A35',
+                processor: 'Exynos 1380',
+                display: '6.6" Super AMOLED (120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '50MP + 8MP + 5MP',
+                battery: '5000mAh',
+                material: 'Plastik',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 38
+            },
+            'a34': {
+                name: 'Samsung Galaxy A34',
+                processor: 'MediaTek Dimensity 1080',
+                display: '6.6" Super AMOLED (120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '48MP + 8MP + 5MP',
+                battery: '5000mAh',
+                material: 'Plastik',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 35
+            },
+            // Google Pixel
+            'pixel9pro': {
+                name: 'Google Pixel 9 Pro XL',
+                processor: 'Google Tensor G4',
+                display: '6.8" LTPO OLED (1-120Hz)',
+                ram: '16GB',
+                storage: '1TB (max)',
+                camera: '50MP + 48MP + 48MP',
+                battery: '5060mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 15 (7 Jahre Updates)',
+                score: 75
+            },
+            'pixel9': {
+                name: 'Google Pixel 9',
+                processor: 'Google Tensor G4',
+                display: '6.3" OLED (60-120Hz)',
+                ram: '12GB',
+                storage: '256GB (max)',
+                camera: '50MP + 48MP',
+                battery: '4700mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 15 (7 Jahre Updates)',
+                score: 70
+            },
+            'pixel8pro': {
+                name: 'Google Pixel 8 Pro',
+                processor: 'Google Tensor G3',
+                display: '6.7" LTPO OLED (1-120Hz)',
+                ram: '12GB',
+                storage: '1TB (max)',
+                camera: '50MP + 48MP + 48MP',
+                battery: '5050mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 15 (6 Jahre verbleibend)',
+                score: 72
+            },
+            'pixel8': {
+                name: 'Google Pixel 8',
+                processor: 'Google Tensor G3',
+                display: '6.2" OLED (60-120Hz)',
+                ram: '8GB',
+                storage: '256GB (max)',
+                camera: '50MP + 12MP',
+                battery: '4575mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 15 (6 Jahre verbleibend)',
+                score: 67
+            },
+            'pixel7pro': {
+                name: 'Google Pixel 7 Pro',
+                processor: 'Google Tensor G2',
+                display: '6.7" LTPO OLED (10-120Hz)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '50MP + 48MP + 12MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 15 (5 Jahre verbleibend)',
+                score: 68
+            },
+            // Xiaomi
+            'xiaomi14ultra': {
+                name: 'Xiaomi 14 Ultra',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.73" AMOLED (1-120Hz)',
+                ram: '16GB',
+                storage: '1TB (max)',
+                camera: '50MP + 50MP + 50MP + 50MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (3 Jahre Updates)',
+                score: 68
+            },
+            'xiaomi14pro': {
+                name: 'Xiaomi 14 Pro',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.73" AMOLED (1-120Hz)',
+                ram: '16GB',
+                storage: '1TB (max)',
+                camera: '50MP + 50MP + 50MP',
+                battery: '4880mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (3 Jahre Updates)',
+                score: 65
+            },
+            'xiaomi14': {
+                name: 'Xiaomi 14',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.36" AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '50MP + 50MP + 50MP',
+                battery: '4610mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (3 Jahre Updates)',
+                score: 64
+            },
+            'xiaomi13pro': {
+                name: 'Xiaomi 13 Pro',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.73" AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '50MP + 50MP + 50MP',
+                battery: '4820mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (2 Jahre verbleibend)',
+                score: 62
+            },
+            'xiaomi13': {
+                name: 'Xiaomi 13',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.36" AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '256GB (max)',
+                camera: '50MP + 12MP + 10MP',
+                battery: '4500mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (2 Jahre verbleibend)',
+                score: 58
+            },
+            // OnePlus
+            'oneplus12': {
+                name: 'OnePlus 12',
+                processor: 'Snapdragon 8 Gen 3',
+                display: '6.82" AMOLED (1-120Hz)',
+                ram: '16GB',
+                storage: '512GB (max)',
+                camera: '50MP + 64MP + 48MP',
+                battery: '5400mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 14 (4 Jahre Updates)',
+                score: 70
+            },
+            'oneplus11': {
+                name: 'OnePlus 11',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.7" AMOLED (1-120Hz)',
+                ram: '16GB',
+                storage: '256GB (max)',
+                camera: '50MP + 32MP + 48MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (3 Jahre verbleibend)',
+                score: 66
+            },
+            'oneplus10pro': {
+                name: 'OnePlus 10 Pro',
+                processor: 'Snapdragon 8 Gen 1',
+                display: '6.7" AMOLED (1-120Hz)',
+                ram: '12GB',
+                storage: '256GB (max)',
+                camera: '48MP + 50MP + 8MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (2 Jahre verbleibend)',
+                score: 62
+            },
+            // Andere
+            'nothing2': {
+                name: 'Nothing Phone 2',
+                processor: 'Snapdragon 8+ Gen 1',
+                display: '6.7" OLED (1-120Hz)',
+                ram: '12GB',
+                storage: '256GB (max)',
+                camera: '50MP + 50MP',
+                battery: '4700mAh',
+                material: 'Aluminium + Gorilla Glass 5',
+                software: 'Android 14 (3 Jahre Updates)',
+                score: 58
+            },
+            'nothing2a': {
+                name: 'Nothing Phone 2a',
+                processor: 'MediaTek Dimensity 7200 Pro',
+                display: '6.7" AMOLED (120Hz)',
+                ram: '12GB',
+                storage: '256GB (max)',
+                camera: '50MP + 50MP',
+                battery: '5000mAh',
+                material: 'Plastik',
+                software: 'Android 14 (3 Jahre Updates)',
+                score: 48
+            },
+            'sony1v': {
+                name: 'Sony Xperia 1 V',
+                processor: 'Snapdragon 8 Gen 2',
+                display: '6.5" OLED (120Hz)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '48MP + 12MP + 12MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus 2',
+                software: 'Android 14 (2 Jahre Updates)',
+                score: 63
+            },
+            'sony1iv': {
+                name: 'Sony Xperia 1 IV',
+                processor: 'Snapdragon 8 Gen 1',
+                display: '6.5" OLED (120Hz)',
+                ram: '12GB',
+                storage: '512GB (max)',
+                camera: '12MP + 12MP + 12MP',
+                battery: '5000mAh',
+                material: 'Aluminium + Gorilla Glass Victus',
+                software: 'Android 14 (1 Jahr verbleibend)',
+                score: 58
+            }
+        };
+
+        document.getElementById('phoneSelect').addEventListener('change', function() {
+            const selectedPhone = this.value;
+            const resultsDiv = document.getElementById('comparisonResults');
+            
+            if (selectedPhone && phoneDatabase[selectedPhone]) {
+                const phone = phoneDatabase[selectedPhone];
+                
+                // Update phone name
+                document.getElementById('yourPhoneName').textContent = phone.name;
+                
+                // Build specs list
+                const specsHTML = `
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">Prozessor:</span>
+                        <span class="spec-value">${phone.processor} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">Display:</span>
+                        <span class="spec-value">${phone.display} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">RAM:</span>
+                        <span class="spec-value">${phone.ram} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">Speicher:</span>
+                        <span class="spec-value">${phone.storage} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">Kamera:</span>
+                        <span class="spec-value">${phone.camera} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">Akku:</span>
+                        <span class="spec-value">${phone.battery} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item ${phone.score >= 75 ? 'winner' : 'loser'}">
+                        <span class="spec-label">Material:</span>
+                        <span class="spec-value">${phone.material} ${phone.score >= 75 ? '🏆' : '❌'}</span>
+                    </div>
+                    <div class="spec-item loser">
+                        <span class="spec-label">Software:</span>
+                        <span class="spec-value">${phone.software} ❌</span>
+                    </div>
+                `;
+                
+                document.getElementById('yourPhoneSpecs').innerHTML = specsHTML;
+                document.getElementById('yourPhoneScore').textContent = `Score: ${phone.score}`;
+                
+                // Generate summary based on score and phone type
+                let summary = '';
+                let upgradeMsg = '';
+                const isApple = phone.name.includes('iPhone');
+                
+                if (isApple && phone.score >= 90) {
+                    summary = `Wow! Das ${phone.name} ist bereits ein Premium-iPhone mit <strong>${phone.score} von 100 Punkten</strong>! 
+                    Das iPhone 17 Pro Max bietet dennoch Upgrades: <strong>A19 Pro Chip</strong> für noch bessere Performance, 
+                    <strong>2TB Speicher</strong> (statt max. ${phone.storage}), <strong>größeres Display</strong> mit 6.9", 
+                    <strong>verbesserte Kameras</strong> und <strong>längere Akkulaufzeit</strong>. 
+                    Für das absolute Spitzen-Erlebnis! 🏆`;
+                    upgradeMsg = '🌟 Vom Top-iPhone zum absoluten Flagship!';
+                } else if (isApple && phone.score >= 80) {
+                    summary = `Sehr gut! Das ${phone.name} ist ein starkes iPhone mit <strong>${phone.score} von 100 Punkten</strong>. 
+                    Das iPhone 17 Pro Max bietet dir: <strong>neuester A19 Pro Chip</strong> (vs. ${phone.processor}), 
+                    <strong>ProMotion Display mit 1-120Hz</strong>, <strong>bis zu 2TB Speicher</strong>, 
+                    <strong>Titan-Gehäuse</strong> (vs. ${phone.material}), und <strong>modernste Kamera-Features</strong>. 
+                    Ein würdiges Upgrade! 🍎`;
+                    upgradeMsg = '✨ Zeit für das neueste iPhone-Flaggschiff!';
+                } else if (isApple && phone.score >= 70) {
+                    summary = `Das ${phone.name} ist solide mit <strong>${phone.score} von 100 Punkten</strong>. 
+                    Das iPhone 17 Pro Max ist ein großer Sprung: <strong>A19 Pro Chip</strong> übertrifft deinen ${phone.processor} deutlich, 
+                    <strong>ProMotion 120Hz Always-On Display</strong>, <strong>2TB Speicher-Option</strong>, 
+                    <strong>Premium Titan-Gehäuse</strong>, <strong>deutlich längere Updates</strong> und 
+                    die <strong>neueste Kamera-Technologie</strong>. Definitiv ein lohnendes Upgrade! 💎`;
+                    upgradeMsg = '🚀 Bereit für den nächsten Level?';
+                } else if (!isApple && phone.score < 50) {
+                    summary = `Autsch! Das ${phone.name} erreicht nur <strong>${phone.score} von 100 Punkten</strong>. 
+                    Im Vergleich zum iPhone 17 Pro Max fehlen dir: <strong>modernste Prozessor-Technologie</strong>, 
+                    <strong>Premium-Materialien wie Titan</strong>, <strong>8+ Jahre Software-Support</strong> und 
+                    das <strong>nahtlose Apple-Ökosystem</strong>. Zeit für ein ernsthaftes Upgrade! 🚀`;
+                    upgradeMsg = '⚠️ Dringend empfohlen: Wechsel zum iPhone!';
+                } else if (!isApple && phone.score < 65) {
+                    summary = `Das ${phone.name} ist solide, aber erreicht nur <strong>${phone.score} von 100 Punkten</strong>. 
+                    Das iPhone 17 Pro Max bietet dir: <strong>deutlich bessere Performance</strong> mit dem A19 Pro Chip, 
+                    <strong>längeren Software-Support</strong> (8+ Jahre statt ${phone.software.match(/\d+/)[0]} Jahre), 
+                    <strong>hochwertigere Materialien</strong> und das <strong>perfekt integrierte Apple-Ökosystem</strong>. 
+                    Ein Upgrade lohnt sich definitiv! 💎`;
+                    upgradeMsg = '💡 Zeit für ein Upgrade zum iPhone!';
+                } else if (!isApple && phone.score < 75) {
+                    summary = `Nicht schlecht! Das ${phone.name} erreicht <strong>${phone.score} von 100 Punkten</strong>. 
+                    Aber das iPhone 17 Pro Max übertrifft es in allen Bereichen: <strong>überlegene Performance</strong>, 
+                    <strong>8+ Jahre Updates</strong> (vs. deine ${phone.software.match(/\d+/)[0]} Jahre), 
+                    <strong>Titan statt ${phone.material.split('+')[0].trim()}</strong>, und das <strong>unschlagbare Apple-Ökosystem</strong> 
+                    mit nahtloser Integration zu Mac, iPad und Apple Watch. Gönn dir das Beste! 🍎`;
+                    upgradeMsg = '✨ Bereit für das Apple-Erlebnis?';
+                } else {
+                    summary = `Respekt! Das ${phone.name} ist ein Top-Gerät mit <strong>${phone.score} von 100 Punkten</strong>. 
+                    Aber auch hier hat das iPhone 17 Pro Max die Nase vorn: <strong>A19 Pro Chip</strong> dominiert alle Benchmarks, 
+                    <strong>Titan Grade 5</strong> ist robuster, <strong>8 Jahre Updates</strong> garantiert, 
+                    <strong>2TB maximaler Speicher</strong>, und das <strong>Apple-Ökosystem</strong> ist unschlagbar integriert. 
+                    Für das ultimative Smartphone-Erlebnis führt kein Weg am iPhone vorbei! 🏆`;
+                    upgradeMsg = '🎯 Vom Guten zum Besten!';
+                }
+                
+                document.getElementById('summaryText').innerHTML = summary;
+                document.getElementById('upgradeMessage').textContent = upgradeMsg;
+                
+                // Show results with animation
+                resultsDiv.style.display = 'block';
+                resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Trigger confetti effect
+                const selectRect = document.getElementById('phoneSelect').getBoundingClientRect();
+                createConfetti(selectRect.left + selectRect.width / 2, selectRect.top + selectRect.height / 2);
+                
+                // Create firework effect for high scores
+                if (phone.score >= 80) {
+                    setTimeout(() => {
+                        createFirework(window.innerWidth / 2, window.innerHeight / 2);
+                    }, 500);
+                }
+                
+                // Floating emojis based on score
+                if (phone.score >= 90) {
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => createFloatingEmoji('🍎', 3000), i * 200);
+                    }
+                } else if (phone.score < 50) {
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => createFloatingEmoji('💔', 3000), i * 200);
+                    }
+                } else {
+                    for (let i = 0; i < 3; i++) {
+                        setTimeout(() => createFloatingEmoji('🚀', 3000), i * 200);
+                    }
+                }
+                
+                // Trigger shake animation on selected phone
+                setTimeout(() => {
+                    const yourPhoneCard = document.querySelector('.your-phone');
+                    yourPhoneCard.classList.add('shake-animation', 'bounce-in');
+                    setTimeout(() => {
+                        yourPhoneCard.classList.remove('shake-animation');
+                    }, 500);
+                }, 300);
+                
+            } else {
+                resultsDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
